@@ -19,8 +19,8 @@
   ],
   "scripts": {
     "generate-sam-template": "sam-helper",
-    "ws-package-dev": "sam package --template-file template.yaml --s3-bucket serverless-deploy-1111 --output-template-file packaged.yaml",
-    "ws-deploy": "sam deploy --template-file ./packaged.yaml --stack-name serverless-deploy-1111 --capabilities CAPABILITY_IAM",
+    "ws-package-dev": "sam package --template-file template.yaml --s3-bucket $S3_BUCKET --output-template-file packaged.yaml",
+    "ws-deploy": "sam deploy --template-file ./packaged.yaml --stack-name $STACK_NAME --capabilities CAPABILITY_IAM",
     "deploy": "npm run fix-npm-timestamps && npm run ws-package-dev && npm run ws-deploy",
     "fix-npm-timestamps": "find ./node_modules -mtime +10950 -exec touch {} \\;"
   }
