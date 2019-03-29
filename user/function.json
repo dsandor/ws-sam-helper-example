@@ -1,0 +1,8 @@
+{
+  "functionName": "GetUserFunction",
+  "routeKey": "get-user",
+  "apiId": "ApiBuiltBySamHelper",
+  "handler": "user/index.getHandler",
+  "codeUri": "./",
+  "policies": ["AmazonAPIGatewayInvokeFullAccess", "AmazonAPIGatewayAdministrator"]
+}

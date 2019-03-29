@@ -1,0 +1,27 @@
+{
+  "name": "ws-sam-helper",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "aws-sdk": "^2.431.0",
+    "aws-websocket-sam-helper": "^1.0.3"
+  },
+  "api": [
+    {
+      "apiId": "ApiBuiltBySamHelper",
+      "apiName": "my-api-from-sam",
+      "stageName": "v1",
+      "stageDescription": "Version 1 of the api.",
+      "routeSelectionExpression": "$request.body.action",
+      "type": "websocket"
+    }
+  ],
+  "scripts": {
+    "generate-sam-template": "sam-helper",
+    "ws-package-dev": "sam package --template-file template.yaml --s3-bucket serverless-deploy-1111 --output-template-file packaged.yaml",
+    "ws-deploy": "sam deploy --template-file ./packaged.yaml --stack-name serverless-deploy-1111 --capabilities CAPABILITY_IAM",
+    "deploy": "npm run fix-npm-timestamps && npm run ws-package-dev && npm run ws-deploy",
+    "fix-npm-timestamps": "find ./node_modules -mtime +10950 -exec touch {} \\;"
+  }
+}
